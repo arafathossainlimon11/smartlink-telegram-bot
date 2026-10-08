@@ -4,10 +4,10 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// সেটিংস
-const BOT_TOKEN = "8716261561:AAEQFS3jR8VHI3hqvNQgEYxMUl09wMDObZM";
+// সেটিংস ও বিজ্ঞাপন কনফিগারেশন
+const BOT_TOKEN = "8716261561:AAEQFS3jR8VHI3hqvNQgEQxMUl09wMDObZM";
 const DIRECT_AD_URL = "https://uplcm.com/4/11982343";
-const MONETAG_META = `<meta name="monetag" content="4b78f101fbeec5762d4b6ea2ec0c9c6f">`;
+const MONETAG_META = `<meta name="monetag" content="62063d92d2fdd50e32bf63db7759324b">`;
 const POPUNDER_SCRIPT = `<script>(function(s){s.dataset.zone='11982337',s.src='https://al5sm.com/tag.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>`;
 
 // টেলিগ্রাম API কল ফাংশন
@@ -154,8 +154,31 @@ app.get('/v/:code', (req, res) => {
   }
 });
 
+// হোম পেজ (Monetag মেটা ট্যাগ সহ)
 app.get('/', (req, res) => {
-  res.send("Smart Link Engine Active!");
+  res.send(`
+    <!DOCTYPE html>
+    <html lang="bn">
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      ${MONETAG_META}
+      <title>Smart Link Engine</title>
+      <style>
+        body { font-family: Arial, sans-serif; display: flex; align-items: center; justify-content: center; min-height: 100vh; margin: 0; background: #0f172a; color: white; text-align: center; }
+        .card { background: rgba(255,255,255,0.05); padding: 30px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); }
+        h1 { font-size: 22px; color: #38bdf8; margin-bottom: 10px; }
+        p { color: #94a3b8; font-size: 14px; }
+      </style>
+    </head>
+    <body>
+      <div class="card">
+        <h1>🚀 Smart Link Engine Active!</h1>
+        <p>This server processes Telegram Bot requests and smart links dynamically.</p>
+      </div>
+    </body>
+    </html>
+  `);
 });
 
 module.exports = app;
