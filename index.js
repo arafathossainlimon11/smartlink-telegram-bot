@@ -4,13 +4,13 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// সেটিংস ও বিজ্ঞাপন কনফিগারেশন
+// সেটিংস ও নতুন বিজ্ঞাপন কনফিগারেশন
 const BOT_TOKEN = "8716261561:AAEQFS3jR8VHI3hqvNQgEQxMUl09wMDObZM";
-const DIRECT_AD_URL = "https://uplcm.com/4/11982343";
+const DIRECT_AD_URL = "https://uplcm.com/4/11982477";
 const MONETAG_META = `<meta name="monetag" content="62063d92d2fdd50e32bf63db7759324b">`;
-const POPUNDER_SCRIPT = `<script>(function(s){s.dataset.zone='11982337',s.src='https://al5sm.com/tag.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>`;
+const POPUNDER_SCRIPT = `<script>(function(s){s.dataset.zone='11982471',s.src='https://al5sm.com/tag.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>`;
 
-// টেলিগ্রাম API কল ফাংশন
+// টেলিগ্রাম API কল করার ফাংশন
 async function callTelegram(method, body) {
   try {
     const res = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/${method}`, {
@@ -110,7 +110,7 @@ app.get('/v/:code', (req, res) => {
 
         <title>Loading...</title>
         
-        <!-- Monetag OnClick (Popunder) বিজ্ঞাপন -->
+        <!-- Monetag OnClick (Popunder) নতুন বিজ্ঞাপন কোড -->
         ${POPUNDER_SCRIPT}
 
         <style>
